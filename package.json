@@ -1,22 +1,23 @@
 {
-  "name": "electron-quick-start",
+  "name": "warlock",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "For all your packaging needs",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+  "package": "electron-packager ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^8.0.0"
+    "electron": "^8.0.0",
+    "electron-packager": "^14.2.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "bootstrap-select": "^1.13.12",
+    "jquery": "^3.4.1",
+    "path": "^0.12.7",
+    "python-shell": "^1.0.8",
+    "webpack-dev-server": "^3.10.3"
   }
 }

@@ -1,0 +1,6 @@
+need to run 
+pyinstaller I:\projects\rate-warlock-gui\engine\warlockupdate.py
+npm run package
+i can run npm run package because i have package variable set in package.json to:
+"package": "electron-packager ."
+otherwise i could just run electron-packager . to achieve the same

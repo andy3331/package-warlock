@@ -1,6 +1,8 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
 window.addEventListener('DOMContentLoaded', () => {
+  let {PythonShell} = require('python-shell')
+  const path = require("path")
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector)
     if (element) element.innerText = text
