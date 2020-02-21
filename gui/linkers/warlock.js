@@ -46,12 +46,19 @@ function post_results(result){
   results_div = document.getElementById("results-div");
   console.log(result);
   results_div.classList.remove("hide-me");
+  if (document.contains(document.getElementById("results"))) {
+    document.getElementById("results").remove();
+  }   
   if (result == 1) {
-    results_pane.innerHTML = "Complete! Maybe not successfully, but I sure am done!";
+ //   results_pane.innerHTML = "Complete! Maybe not successfully, but I sure am done!";
+    var str = '<div class="alert alert-success alert-dismissible fade show" id="results" role="alert"><strong>Complete!</strong> Maybe not successful really, but I sure am done.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+      //results_pane.insertAdjacentHTML('beforeend', str )
   }
   else {
-    results_pane.innerHTML = "Complete! This failed. Horribly.";
-  }  
+    var str = '<div class="alert alert-dismissible alert-danger fade show" id="results" role="alert">This failed. Horribly.<p><strong>grats</strong></p><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+ //   results_pane.innerHTML = "Complete! This failed. Horribly.";
+  }
+  results_pane.insertAdjacentHTML('beforeend', str )
 }
 
 function fade_signin() {
