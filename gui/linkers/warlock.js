@@ -22,7 +22,7 @@ function build_product() {
   }
   
   let pyshell = new PythonShell('warlockupdate.py', options);
-  process.on('message', function(message) {
+  pyshell.on('message', function(message) {
   // swal(message);
     console.log(message);
     post_results(1);

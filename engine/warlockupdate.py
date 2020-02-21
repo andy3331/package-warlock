@@ -180,7 +180,7 @@ def update_ism(ism_file):
 
 
 
-run_command(cmd = vault_exec + " GET -host dbsed1143 -user " + input_user + " -password " + input_password + " -repository CT40Packaging $/builds/WebStrat/CodingReferences -makewritable -setfiletime modification", opt=1)
+run_command(cmd = '\"' + vault_exec + '\"' + " GET -host dbsed1143 -user " + input_user + " -password " + input_password + " -repository CT40Packaging $/builds/WebStrat/CodingReferences -makewritable -setfiletime modification", opt=1)
 sys.stdout.flush()
 #i actually think i no longer need attribute change...seems like -makewritable will render this unnecessary!
 #print("Running attribute change")
