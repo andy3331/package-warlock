@@ -10,7 +10,7 @@ function build_product() {
   var version = document.getElementById("input_version").value
   e.disabled = "true";
   go.disabled = "true";
-
+  post_results(2);
   //console.log(product)
 
   
@@ -20,12 +20,17 @@ function build_product() {
     //need below for production... could probably use __dirname like above
     pythonPath : path.join(__dirname, '/../dist/warlockupdate/warlockupdate.exe')
   }
-  
   let pyshell = new PythonShell('warlockupdate.py', options);
   pyshell.on('message', function(message) {
   // swal(message);
     console.log(message);
-    post_results(1);
+    //catching if the message contains error FROM python. uncaught exception below only catches a problem with the javascript/spawn process of python.
+    if (message.includes("Error")) {
+      post_results(0);
+    }
+    else {
+      post_results(1);
+    }
   })
   .on('uncaughtException', (err) => {
     console.error('there was an uncaught error', err);
@@ -44,21 +49,23 @@ function post_results(result){
   go.disabled = false;
   results_pane = document.getElementById("results-pane");
   results_div = document.getElementById("results-div");
-  console.log(result);
   results_div.classList.remove("hide-me");
   if (document.contains(document.getElementById("results"))) {
     document.getElementById("results").remove();
   }   
-  if (result == 1) {
- //   results_pane.innerHTML = "Complete! Maybe not successfully, but I sure am done!";
-    var str = '<div class="alert alert-success alert-dismissible fade show" id="results" role="alert"><strong>Complete!</strong> Maybe not successful really, but I sure am done.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
-      //results_pane.insertAdjacentHTML('beforeend', str )
-  }
-  else {
+  if (result == 0) {
     var str = '<div class="alert alert-dismissible alert-danger fade show" id="results" role="alert">This failed. Horribly.<p><strong>grats</strong></p><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
- //   results_pane.innerHTML = "Complete! This failed. Horribly.";
+    //results_pane.insertAdjacentHTML('beforeend', str )
+  }
+  else if (result == 1) {
+    var str = '<div class="alert alert-success alert-dismissible fade show" id="results" role="alert"><strong>Complete!</strong> Maybe not successful really, but I sure am done.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+  }
+  else if (result == 2) {
+    var str = '<div class="alert alert-primary alert-dismissible fade show" id="results" role="alert"><strong>In Progress</strong></br>probably...no promises...<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
   }
   results_pane.insertAdjacentHTML('beforeend', str )
+  //this is for debugging what result is set to if messages are routed incorrectly.
+  //console.log(result);
 }
 
 function fade_signin() {
