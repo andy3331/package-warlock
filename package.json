@@ -15,7 +15,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "bootstrap-select": "^1.13.12",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "path": "^0.12.7",
     "python-shell": "^1.0.8",
     "webpack-dev-server": "^3.10.3"
